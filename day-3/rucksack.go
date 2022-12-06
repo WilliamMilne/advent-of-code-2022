@@ -8,7 +8,7 @@ import (
 
 func main() {
 	packingList := readInputFile()
-	rucksackContents := strings.Split(packingList, "\n")
+	rucksackContents := strings.Split(packingList, "\r\n")
 	fmt.Println(rucksackContents)
 	var sum int32 = 0
 	for _, s := range rucksackContents {
@@ -42,12 +42,6 @@ func findBadgeOfThreeElves(rucksackContents []string) int32 {
 		has1 := m1[c] > 0
 		has2 := m2[c] > 0
 		if has1 && has2 {
-			fmt.Println("=====")
-			fmt.Println(c)
-			fmt.Println(m0[c])
-			fmt.Println(m1[c])
-			fmt.Println(m2[c])
-			fmt.Println("=====")
 			return c
 		}
 	}
@@ -58,12 +52,6 @@ func findBadgeOfThreeElves(rucksackContents []string) int32 {
 func countInstancesOfItems(rucksackContents string) map[int32]int {
 	m := make(map[int32]int)
 	for _, c := range rucksackContents {
-		// was somehow getting a "carriage return" in
-		// the contents, so skipped that by ignoring 13.
-		// not an ideal long-term solution, but did solve the problem appropriately.
-		if c == 13 {
-			continue
-		}
 		converted := convertASCIIValueToPriorityValue(c)
 		fmt.Println(converted)
 		m[converted] = m[converted] + 1
